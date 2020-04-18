@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="고니랑용주랑">
+  <title>보고니 빙고판</title>
+  <style>
+    body {
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      font-size: 35px;
+      font-weight: bold;
+    }
+    .bingo{
+	  margin-top: 75px;
+      width: 500px;
+      height: 500px;
+      position: relative;
+      text-align: center;
+    }
+    .bingo:after{
+      width: 500px;
+      height: 500px;
+      z-index: -1;
+      position: absolute;
+      margin-top: 53px;
+      left: 0;
+      top: 0;
+      content: "";
+      background: url("https://scontent-gmp1-1.cdninstagram.com/v/t51.2885-15/e35/91515162_159581078843243_6911703172673143207_n.jpg?_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_cat=111&_nc_ohc=RzeqUYM713UAX_NgiDW&oh=e1b2d66395e0193d7d12b7210f0ea64b&oe=5EC40CF0");
+      background-size: 500px 500px;
+      opacity: 0.5;
+    }
+    .bingo-table {
+      width: 500px;
+      height: 500px;
+      margin: 0px;
+      table-layout: fixed;
+      border-spacing: 0px;
+      border: 3px solid;
+    }
+    .bingo-table td {
+      border: 1px solid #808080;
+	  height: 54px;
+    }
+    .bingo-number {
+      overflow: hidden;
+      max-height: 54px;
+    }
+    .bingo-table td:hover {
+      color: #F588AD;
+    }
+	.game-start {
+	  border-top-left-radius: 5px;
+	  border-bottom-left-radius: 5px;
+	  margin-right: -4px;
+	  margin-top: 20px;
+	  border: 2px solid gray;
+	  background-color: rgba(0,0,0,0);
+	  color: gray;
+	  padding: 5px;
+	  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      font-size: 30px;
+	}
+	.game-start:hover {
+	  color: white;
+	  background-color: gray;
+	}
+	#score {
+	  margin-top: 15px;
+	  font-weight: normal;
+	}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+  <script>
+    var size = 5;
+	var count = 0;
+    var bingo = 0;
+    var arr = new Array(size*size);
+
+	function initArray() {
+	  for(i=0; i<size; i++) {
+	    for(j=1; j<=size; j++) {
+		  arr[i*5+j-1] = document.getElementById(i*5+j).innerHTML;
+		}
+	  }
+	}
+
+	function scoreChange() {
+	  bingo = 0;
+	  var c1cnt = 0;
+	  var c2cnt = 0;
+	  for(i=0;i<size;i++){
+	    var xcnt = 0;
+		var ycnt = 0;
+		for(j=0;j<size;j++){
+		  if(arr_flag[i*5+j]==true){ xcnt++; }
+		  if(arr_flag[j*5+i]==true){ ycnt++; }
+		  if(i==j&&arr_flag[i*5+j]==true){ c1cnt++; }
+		  if(i+j==4&&arr_flag[i*5+j]==true){ c2cnt++; }
+		}
+		if(xcnt==5){ bingo++; }
+		if(ycnt==5){ bingo++; }
+	  }
+	  if(c1cnt==5){ bingo++; }
+	  if(c2cnt==5){ bingo++; }
+	  
+	  document.all("score").innerHTML="<font color='red'>"+bingo+"</font>줄 ┃ <font color='red'>"+count+"</font>개";
+	};
+  </script>
+</head>
+
+<body>
+  <center>
+    <div id="bingo-start">
+      <div class="bingo">
+        <table class="bingo-table">
+          <thead>B I N G O</thead>
+          <tbody>
+            <tr>
+              <td><div id="1" class="bingo-number"></div></td>
+              <td><div id="2" class="bingo-number"></div></td>
+              <td><div id="3" class="bingo-number"></div></td>
+              <td><div id="4" class="bingo-number"></div></td>
+              <td><div id="5" class="bingo-number"></div></td>
+            </tr>
+            <tr>
+              <td><div id="6" class="bingo-number"></div></td>
+              <td><div id="7" class="bingo-number"></div></td>
+              <td><div id="8" class="bingo-number"></div></td>
+              <td><div id="9" class="bingo-number"></div></td>
+              <td><div id="10" class="bingo-number"></div></td>
+            </tr>
+            <tr>
+              <td><div id="11" class="bingo-number"></div></td>
+              <td><div id="12" class="bingo-number"></div></td>
+              <td><div id="13" class="bingo-number"></div></td>
+              <td><div id="14" class="bingo-number"></div></td>
+              <td><div id="15" class="bingo-number"></div></td>
+            </tr>
+            <tr>
+              <td><div id="16" class="bingo-number"></div></td>
+              <td><div id="17" class="bingo-number"></div></td>
+              <td><div id="18" class="bingo-number"></div></td>
+              <td><div id="19" class="bingo-number"></div></td>
+              <td><div id="20" class="bingo-number"></div></td>
+            </tr>
+            <tr>
+              <td><div id="21" class="bingo-number"></div></td>
+              <td><div id="22" class="bingo-number"></div></td>
+              <td><div id="23" class="bingo-number"></div></td>
+              <td><div id="24" class="bingo-number"></div></td>
+              <td><div id="25" class="bingo-number"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <button id="game-start" class="game-start">Game Start!</button>
+	  <div id="score"></div>
+    </div>
+  </center>
+</body>
+
+<script>
+  for(var i=1; i<=size*size; i++) $("#"+i).attr("contenteditable", true);
+  var arr_flag = new Array(size*size);
+  for(var i=0; i<size*size; i++) arr_flag[i] = false;
+
+  var button = document.getElementById("game-start");
+  button.addEventListener("click", btn);
+  function btn(){
+    makeStartImg();
+    setTimeout(function(){
+	  $("#start-img").remove();
+	}, 1111);
+    for(var i=1; i<=size*size; i++) $("#"+i).attr("contenteditable", false);
+	initArray();
+    $("#game-start").hide();
+  }
+  
+  $(document).ready(function() {
+    if(button.style.display!="none") {
+	  $('.bingo-number').on('keyup', function() {
+        var id = $(this).attr("id");
+        var node = document.getElementById(id);
+        if(node.innerHTML.length > 3) {
+          document.getElementById(id).innerHTML = node.innerHTML.substring(0,3);
+        }
+      })
+	}
+  })
+  
+  function makeStartImg() {
+    var img = document.createElement("img");
+	img.setAttribute("id", "start-img");
+	img.setAttribute("src", "https://user-images.githubusercontent.com/63826044/79519782-cdd21f80-808f-11ea-9580-a4036e12ad76.png");
+	img.style.position = "absolute";
+	img.style.width = "500px";
+	img.style.height = "275px";
+	img.style.width = "590px";
+	img.style.height = "325px";
+	img.style.display = "inline";
+	img.style.left = "-40px";
+	img.style.top = "130px";
+	$(".bingo-table").append(img);
+  }
+  
+  $(".bingo-number").click(function(){
+    if(button.style.display=="none") {
+      var id = $(this).attr("id");
+	  if(arr_flag[parseInt(id)-1] == false) {
+	    arr_flag[parseInt(id)-1] = true
+	    count++;
+		var arr_width = new Array(2,101,200,299,398);
+		var arr_height = new Array(54,152,250,350,450);
+		var xx = arr_width[(parseInt(id)-1)%5];
+		var yy = arr_height[parseInt((parseInt(id)-1)/5)];
+        var img = document.createElement("img");
+        img.setAttribute("id", "img"+id);
+        img.setAttribute("class", "check-img");
+        img.setAttribute("src", "https://user-images.githubusercontent.com/63826044/79544057-646f0280-80c9-11ea-95c0-8125147feefa.png");
+        img.style.position = "absolute";
+        img.style.left = xx+"px";
+        img.style.top = yy+"px";
+        $(".bingo-table").append(img);
+	  }
+	  else {
+	    arr_flag[parseInt(id)-1] = false;
+	    count--;
+		$("#img"+id).remove();
+	  }
+      scoreChange();
+    }
+  });
+  
+  $(document).on("click", ".check-img", function(){
+    var id_str = $(this).attr("id");
+	var id = id_str.split("img")[1];
+	arr_flag[parseInt(id)-1] = false;
+	count--;
+	$("#"+id_str).remove();
+	scoreChange();
+  });
+</script>
+</html>
